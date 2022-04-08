@@ -1,9 +1,15 @@
-import React from "react";
+import React, {useState} from "react";
 
-function Search() {
+function Search({onSearch}) {
+  const [search, setSearch] = useState("")
+  //need a second search-related state variable in the search file in order to set the value of 
+  //what is typed into the search bar. The first search-related state variable was used to set which
+  //listings to display.
+
+
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("submitted");
+    onSearch(search)
   }
 
   return (
@@ -12,8 +18,8 @@ function Search() {
         type="text"
         id="search"
         placeholder="search free stuff"
-        value={""}
-        onChange={(e) => console.log(e.target.value)}
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
       />
       <button type="submit">🔍</button>
     </form>
